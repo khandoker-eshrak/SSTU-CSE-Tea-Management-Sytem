@@ -27,6 +27,12 @@ if (dbDialect === 'sqlite') {
       port: process.env.DB_PORT,
       dialect: dbDialect,
       logging: false,
+      dialectOptions: dbDialect === 'postgres' ? {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false
+        }
+      } : {},
       pool: {
         max: 5,
         min: 0,
