@@ -1,0 +1,9 @@
+{
+  "name": "tea-management-system",
+  "version": "1.0.0",
+  "description": "Full-Stack Tea Management System",
+  "type": "module",
+  "scripts": {
+    "dev": "node dev.js"
+  }
+}
