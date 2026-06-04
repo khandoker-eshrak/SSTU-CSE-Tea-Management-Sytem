@@ -27,31 +27,31 @@ export const getStudents = async (req, res) => {
         [
           sequelize.literal(`(
             SELECT COALESCE(SUM(quantity), 0)
-            FROM Transactions AS t
-            WHERE t.student_id = Student.student_id
+            FROM "Transactions" AS t
+            WHERE t.student_id = "Student"."student_id"
           )`),
           'total_tea_bags'
         ],
         [
           sequelize.literal(`(
             SELECT COALESCE(SUM(total_amount), 0)
-            FROM Transactions AS t
-            WHERE t.student_id = Student.student_id
+            FROM "Transactions" AS t
+            WHERE t.student_id = "Student"."student_id"
           )`),
           'total_cost'
         ],
         [
           sequelize.literal(`(
             SELECT COALESCE(SUM(amount), 0)
-            FROM Payments AS p
-            WHERE p.student_id = Student.student_id
+            FROM "Payments" AS p
+            WHERE p.student_id = "Student"."student_id"
           )`),
           'total_paid'
         ],
         [
           sequelize.literal(`(
-            COALESCE((SELECT SUM(total_amount) FROM Transactions AS t WHERE t.student_id = Student.student_id), 0) -
-            COALESCE((SELECT SUM(amount) FROM Payments AS p WHERE p.student_id = Student.student_id), 0)
+            COALESCE((SELECT SUM(total_amount) FROM "Transactions" AS t WHERE t.student_id = "Student"."student_id"), 0) -
+            COALESCE((SELECT SUM(amount) FROM "Payments" AS p WHERE p.student_id = "Student"."student_id"), 0)
           )`),
           'due_amount'
         ]

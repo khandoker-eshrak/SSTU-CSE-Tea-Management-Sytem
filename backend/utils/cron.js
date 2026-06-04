@@ -21,8 +21,8 @@ export const runMonthlyDuesEmailJob = async () => {
         'batch',
         [
           sequelize.literal(`(
-            COALESCE((SELECT SUM(total_amount) FROM Transactions AS t WHERE t.student_id = Student.student_id), 0) -
-            COALESCE((SELECT SUM(amount) FROM Payments AS p WHERE p.student_id = Student.student_id), 0)
+            COALESCE((SELECT SUM(total_amount) FROM "Transactions" AS t WHERE t.student_id = "Student"."student_id"), 0) -
+            COALESCE((SELECT SUM(amount) FROM "Payments" AS p WHERE p.student_id = "Student"."student_id"), 0)
           )`),
           'due_amount'
         ]
